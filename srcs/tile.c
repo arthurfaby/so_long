@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:26:55 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/05 18:59:56 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/05 21:43:28 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "defines.h"
 #include "includes.h"
 
-int	choose_type(t_map *map, char type, int y, int x)
+int	choose_type(t_map *map, char type, int x, int y)
 {
 	if (type == '0')
 		return (GROUND);
@@ -50,7 +50,7 @@ t_tile	*create_tile(t_map *map, char type, int row, int col)
 		return (0);
 	new->row = row;
 	new->col = col;
-	new->type = choose_type(map, type, col, row);
+	new->type = choose_type(map, type, row, col);
 	new->width = 16;
 	new->height = 16;
 	return (new);

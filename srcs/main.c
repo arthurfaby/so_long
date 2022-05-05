@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:10:16 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/05 18:44:56 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/05 21:56:02 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	render(t_env *env)
 	int	x;
 	int	y;
 
-	x = 0;
+	x = 2;
 	if (env->win)
 	{
 		while (env->map->board[x])
@@ -50,18 +50,21 @@ int	main(int argc, char *argv[])
 {
 	(void)argc;
 	
-	t_env	env;
+	t_env		env;
+	t_texture	texture;
 
 	env.map = create_map(argv[1]);
 	env.mlx = mlx_init();
 	env.width = 500;
 	env.height = 500;
 	env.win = mlx_new_window(env.mlx, env.width, env.height, "SO_COOL");
+	charge_texture(&env, &texture);
+	env.texture = &texture;
 	ft_printf("\033[0;32mMap successfully created !\n");
 	//ft_printf("\033[0;33mn_rows : %d, n_cols : %d\n", env.map->n_rows, env.map->n_cols);
 
 	//ft_printf("Value : %d\n", env.map->board[5][9]->type);
-	mlx_loop_hook(env.mlx, render, &env);
+	mlx_loop_hook(env.mlx, &render, &env);
 	mlx_loop(env.mlx);
 	return (0);
 }

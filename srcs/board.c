@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:52:17 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/05 19:04:23 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/05 21:44:29 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	create_board(t_map *map, char *path)
 			i++;
 		}
 		map->board[row][col] = 0;
-		//free(line);
+		free(line);
 		line = get_next_line(fd, BUFFER_SIZE);
 		row++;
 	}

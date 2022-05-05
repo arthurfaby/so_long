@@ -6,7 +6,7 @@
 #    By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/24 15:12:12 by afaby             #+#    #+#              #
-#    Updated: 2022/05/05 15:13:51 by afaby            ###   ########.fr        #
+#    Updated: 2022/05/05 20:13:39 by afaby            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME = so_long
 SRCS =	srcs/board.c \
 		srcs/main.c \
 		srcs/map.c \
-		srcs/tile.c
+		srcs/tile.c \
+		srcs/texture.c
 
 CC = gcc
 
