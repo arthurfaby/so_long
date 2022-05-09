@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 11:11:15 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/05 18:27:46 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/09 11:13:26 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,47 @@ typedef struct s_tile
 	int	type;
 }	t_tile;
 
-typedef struct s_map
+typedef struct	s_map
 {
 	t_tile	***board;
 	int		n_cols;
 	int		n_rows;
+	int		to_collect;
 }	t_map;
+
+typedef struct	s_player
+{
+	int	row;
+	int	col;
+	int	collected;
+	int	moves;
+	int	health;
+}	t_player;
+
+typedef struct	s_image
+{
+	int		bpp;
+	int		line_len;
+	int		endian;
+	char	*addr;
+	void	*img;
+}	t_image;
 
 typedef struct	s_texture
 {
 	void	*water;
 	void	*ground;
 	void	*spawn;
-	void	*exit;
-	void	*collectable;
+	void	*exit_on;
+	void	*exit_off;
+	void	*collectible;
 	void	*collected;
-	void	*bn;
-	void	*bs;
-	void	*be;
-	void	*bw;
-	void	*bne;
-	void	*bnw;
-	void	*bse;
-	void	*bsw;
+	void	*wall;
+	void	*no_texture;
+	void	*player;
+	void	*enemy;
+	void	*title;
+	void	*title_play;
 }	t_texture;
 
 typedef struct s_env
@@ -55,8 +73,11 @@ typedef struct s_env
 	void		*win;
 	int			width;
 	int			height;
+	int			in_menu;
+	int			selected;
 	t_map		*map;
 	t_texture	*texture;
+	t_player	*player;
 }	t_env;
 
 #endif

@@ -6,7 +6,7 @@
 #    By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/24 15:12:12 by afaby             #+#    #+#              #
-#    Updated: 2022/05/05 20:13:39 by afaby            ###   ########.fr        #
+#    Updated: 2022/05/09 15:00:12 by afaby            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,16 @@ SRCS =	srcs/board.c \
 		srcs/main.c \
 		srcs/map.c \
 		srcs/tile.c \
-		srcs/texture.c
+		srcs/texture.c \
+		srcs/player.c \
+		srcs/key.c \
+		srcs/display.c \
+		srcs/update.c \
+		srcs/interface.c \
+		srcs/menu.c \
+		srcs/image.c \
+		srcs/end.c \
+		srcs/error.c
 
 CC = gcc
 
@@ -25,7 +34,7 @@ INCS = incs/
 MLX = libs/minilibx
 LIBFT = libs/libft
 
-CFLAGS = -Wall -Wextra -Werror -I$(MLX) -L$(MLX) -lmlx -lXext -lX11 -lm -I$(INCS) -I$(LIBFT)
+CFLAGS = -Wall -Wextra -Werror -I$(MLX) -L$(MLX) -lmlx -lXext -lX11 -lm -I$(INCS) -I$(LIBFT) -L$(LIBFT) -lft
 
 #-L$(LIBFT) -lft
 
@@ -37,7 +46,7 @@ $(NAME):
 	@make -sC $(LIBFT)
 	@echo "\033[0;32mChecking mlx.a"
 	@make -sC $(MLX)
-	@$(CC) -g $(SRCS) libs/libft/*/*.o -o $(NAME) $(CFLAGS)
+	@$(CC) -g $(SRCS) -o $(NAME) $(CFLAGS)
 
 clean:
 	@rm -f $(NAME)

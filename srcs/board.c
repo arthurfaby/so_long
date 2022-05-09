@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:52:17 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/05 21:44:29 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/09 14:17:01 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ t_tile	***malloc_board(int	n_rows, int n_cols)
 	int		i;
 
 	i = 0;
-	board = malloc(sizeof(t_tile **) * n_rows);
-	while (i < n_cols)
+	board = malloc(sizeof(t_tile **) * (n_rows + 1));
+	while (i < n_rows)
 	{
-		board[i] = malloc(sizeof(t_tile *));
+		board[i] = malloc(sizeof(t_tile *) * (n_cols + 1));
 		i++;
 	}
 	return (board);
@@ -50,7 +50,7 @@ int	create_board(t_map *map, char *path)
 		i = 0;
 		while (line[i] && line[i] != '\n')
 		{
-			map->board[row][col] = create_tile(map, line[i], row, col);
+			map->board[row][col] = create_tile(line[i], row, col);
 			col++;
 			i++;
 		}

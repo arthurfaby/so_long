@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:10:16 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/05 21:56:02 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/09 15:51:55 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,56 +15,36 @@
 #include "structures.h"
 #include "libft.h"
 #include "mlx.h"
+#include "mlx_int.h"
 
-void	print_tile(t_env *env, int x, int y)
-{
-	if (env->map->board[x][y]->type == GROUND)
-		mlx_put_image_to_window(env->mlx, env->win, env->texture->ground, x * 16, y * 16);
-	else
-		mlx_put_image_to_window(env->mlx, env->win, env->texture->water, x * 16, y * 16);
-}
-
-int	render(t_env *env)
-{
-	int	x;
-	int	y;
-
-	x = 2;
-	if (env->win)
-	{
-		while (env->map->board[x])
-		{
-			y = 0;
-			while (env->map->board[x][y])
-			{
-				print_tile(env, x, y);
-				y++;
-			}
-			x++;
-		}
-	}
-	return (0);
-}
 
 int	main(int argc, char *argv[])
 {
 	(void)argc;
-	
 	t_env		env;
+	t_player	player;
 	t_texture	texture;
 
 	env.map = create_map(argv[1]);
 	env.mlx = mlx_init();
-	env.width = 500;
-	env.height = 500;
+	env.width = (env.map->n_cols + 8) * 16;
+	if (env.width < 800)
+		env.width = 800;
+	env.height = (env.map->n_rows + 8) * 16;
+	if (env.height < 500)
+		env.height = 500;
 	env.win = mlx_new_window(env.mlx, env.width, env.height, "SO_COOL");
+	env.in_menu = 1;
+	env.selected = 1;
 	charge_texture(&env, &texture);
+	init_player(&env, &player);
 	env.texture = &texture;
-	ft_printf("\033[0;32mMap successfully created !\n");
-	//ft_printf("\033[0;33mn_rows : %d, n_cols : %d\n", env.map->n_rows, env.map->n_cols);
-
-	//ft_printf("Value : %d\n", env.map->board[5][9]->type);
-	mlx_loop_hook(env.mlx, &render, &env);
+	env.player = &player;
+	print_water(&env);
+	render(&env);
+//	mlx_hook(env.win, LeaveNotify, LeaveWindowMask, &quit, &env);
+	mlx_hook(env.win, DestroyNotify, StructureNotifyMask, &quit, &env);	
+	mlx_hook(env.win, KeyPress, KeyPressMask, &key_hook, &env);
 	mlx_loop(env.mlx);
 	return (0);
 }
