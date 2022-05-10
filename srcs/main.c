@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:10:16 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/09 15:51:55 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/10 09:46:02 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	main(int argc, char *argv[])
 	env.player = &player;
 	print_water(&env);
 	render(&env);
-//	mlx_hook(env.win, LeaveNotify, LeaveWindowMask, &quit, &env);
 	mlx_hook(env.win, DestroyNotify, StructureNotifyMask, &quit, &env);	
 	mlx_hook(env.win, KeyPress, KeyPressMask, &key_hook, &env);
 	mlx_loop(env.mlx);

@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 17:26:16 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/09 16:45:02 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/10 13:48:50 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,9 @@
 # define EMPTY_FILE_ERR_MSG "Error\n\033[0;31m --> map file is empty.\n\033[0m"
 # define NOT_RECT_ERR 133
 # define NOT_RECT_ERR_MSG "Error\n\033[0;31m --> map must be rectangular.\n\033[0m"
+# define UNKNOWN_TILE_ERR 134
+# define UNKNOWN_TILE_ERR_MSG "Error\n\033[0;31m --> unknown tile.\n\033[0m"
+# define WALL_ERR 135
+# define WALL_ERR_MSG "Error\n\033[0;31m --> map must be surronded by walls.\n\033[0m"
 
 #endif

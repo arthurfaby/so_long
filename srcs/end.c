@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 11:07:23 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/09 16:44:19 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/10 11:41:43 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	free_map(t_map *map)
 			y++;
 		}
 		free(map->board[x][y]);
+		free(map->board[x]);
 		x++;
 	}
 	free(map->board[x]);
@@ -56,7 +57,7 @@ void	free_map(t_map *map)
 
 void	end_game(t_env *env, int code)
 {
-	if (code == FD_ERR || code == EMPTY_FILE_ERR || code == MALLOC_ERR || code == NOT_RECT_ERR)
+	if (!env)
 		ft_error(code);
 	else
 	{

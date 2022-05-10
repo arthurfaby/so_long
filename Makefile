@@ -6,7 +6,7 @@
 #    By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/24 15:12:12 by afaby             #+#    #+#              #
-#    Updated: 2022/05/09 15:00:12 by afaby            ###   ########.fr        #
+#    Updated: 2022/05/10 14:47:35 by afaby            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS =	srcs/board.c \
 		srcs/menu.c \
 		srcs/image.c \
 		srcs/end.c \
-		srcs/error.c
+		srcs/error.c \
+		srcs/check_wall.c
 
 CC = gcc
 
@@ -36,19 +37,21 @@ LIBFT = libs/libft
 
 CFLAGS = -Wall -Wextra -Werror -I$(MLX) -L$(MLX) -lmlx -lXext -lX11 -lm -I$(INCS) -I$(LIBFT) -L$(LIBFT) -lft
 
-#-L$(LIBFT) -lft
-
+RM = rm -f
 
 all: $(NAME)
 
-$(NAME):
-	@echo "\033[0;32mChecking libft.a"
-	@make -sC $(LIBFT)
-	@echo "\033[0;32mChecking mlx.a"
-	@make -sC $(MLX)
-	@$(CC) -g $(SRCS) -o $(NAME) $(CFLAGS)
-
 clean:
-	@rm -f $(NAME)
+	$(RM)
 
-re: clean all
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+$(NAME):
+	make re -C $(MLX)
+	make re -C $(LIBFT)
+	$(CC) -g $(SRCS) -o $(NAME) $(CFLAGS)
+
+.PHONY: all clean fclean re

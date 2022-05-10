@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:06:05 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/09 16:42:21 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/10 14:00:34 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	img_pixel_put(t_env *, t_image *, int, int, int);
 void	display_menu(t_env *);
 int		ft_error(int);
 void	end_game(t_env *, int);
-int		check_rect(char *);
+void	check_map(char *path);
 int		quit(t_env *env);
+void	check_wall(t_map *map);
+void	free_map(t_map *map);
 #endif

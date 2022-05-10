@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:34:03 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/09 16:29:42 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/10 14:02:07 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,7 @@ t_map	*create_map(char *path)
 	t_map	*map;
 	int		fd;
 
-	if (!check_rect(path))
-		end_game(NULL, NOT_RECT_ERR);
+	check_map(path);
 	map = malloc(sizeof(t_map));
 	if (!map)
 		end_game(NULL, MALLOC_ERR);
@@ -122,6 +121,7 @@ t_map	*create_map(char *path)
 	create_board(map, path);
 	map->to_collect = count_collectable(path, map);
 	close(fd);
+	check_wall(map);
 	if (map->n_cols == -1 || map->n_rows == -1 || map->to_collect == -1)
 		// PUT ERROR AND FREE MAP
 		return (0);
