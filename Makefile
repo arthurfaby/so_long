@@ -6,7 +6,7 @@
 #    By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/24 15:12:12 by afaby             #+#    #+#              #
-#    Updated: 2022/05/12 11:54:49 by afaby            ###   ########.fr        #
+#    Updated: 2022/05/12 15:04:28 by afaby            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRCS =	srcs/board.c \
 		srcs/env.c \
 		srcs/print.c \
 		srcs/check_min.c \
-		srcs/check_rect.c
+		srcs/check_rect.c \
+		srcs/move_enemy.c
 
 CC = gcc
 
@@ -50,16 +51,18 @@ all: $(NAME)
 bonus: all
 
 clean:
+#	make clean -C $(MLX)
 	$(RM)
 
 fclean: clean
+#	make fclean -C $(LIBFT)
 	$(RM) $(NAME)
 
 re: fclean all
 
 $(NAME):
-	make re -C $(MLX)
-	make re -C $(LIBFT)
+#	make re -C $(MLX)
+#	make re -C $(LIBFT)
 	$(CC) -g $(SRCS) -o $(NAME) $(CFLAGS)
 
 .PHONY: all clean fclean re

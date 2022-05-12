@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:45:45 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/12 11:30:55 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 17:36:28 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 #include "defines.h"
 #include "functions.h"
 #include "includes.h"
+
+int	check_extension(char *str)
+{
+	int	len;
+
+	len = ft_strlen(str);
+	return (
+		str[len - 1] == 'r'
+		&& str[len - 2] == 'e'
+		&& str[len - 3] == 'b'
+		&& str[len - 4] == '.'
+	);
+}
 
 int	check_legal_tile(char c)
 {

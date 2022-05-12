@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:06:05 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/12 11:18:03 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 17:35:15 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FUNCTIONS_H
 
 # include "structures.h"
+# include "includes.h"
 
 // BOARD.C
 
@@ -51,8 +52,8 @@ int		quit(t_env *env);
 
 int		check_legal_tile(char c);
 void	check_content(char *path);
-void	check_rect(char *path);
 void	check_map(char *path);
+int		check_extension(char *str);
 
 // PRINT.C
 
@@ -119,5 +120,18 @@ void	init_env(t_env *env, char *path);
 
 void	check_min(char *path);
 void	set_code(char c, int *code);
+
+// MOVE_ENEMY.C
+
+void	move_enemies(t_env *env);
+void	move_enemy_left(t_env *env);
+void	move_enemy_right(t_env *env);
+void	move_enemy_bot(t_env *env);
+void	move_enemy_top(t_env *env);
+
+// CHECK_RECT.C
+
+int		modif_ok(char *line, size_t len, int ok);
+void	check_rect(char *path);
 
 #endif

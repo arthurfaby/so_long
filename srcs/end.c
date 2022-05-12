@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 11:07:23 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/11 15:43:52 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 17:22:41 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	free_t(t_env *env)
 	mlx_destroy_image(env->mlx, env->t->wall);
 	mlx_destroy_image(env->mlx, env->t->no_texture);
 	mlx_destroy_image(env->mlx, env->t->player);
+	mlx_destroy_image(env->mlx, env->t->player2);
+	mlx_destroy_image(env->mlx, env->t->player3);
 	mlx_destroy_image(env->mlx, env->t->enemy);
 	mlx_destroy_image(env->mlx, env->t->title);
 	mlx_destroy_image(env->mlx, env->t->title_play);
@@ -57,19 +59,19 @@ void	free_map(t_map *map)
 
 void	end_game(t_env *env, int code)
 {
+	int	moves;
+
 	if (!env)
 		ft_error(code);
 	else
 	{
 		if (code == 1 || code == 0)
 		{
+			moves = env->player->moves;
 			if (code == 1)
-				ft_printf("\033[0;32m");
+				ft_printf("\033[0;32mWon with %d moves :)\n", moves);
 			else if (code == 0)
-				ft_printf("\033[0;31m");
-			ft_printf("-------------------------\n");
-			ft_printf("|  THANKS FOR PLAYING   |\n");
-			ft_printf("-------------------------\n");
+				ft_printf("\033[0;31mLose :(\n");
 		}
 		else
 			ft_error(code);

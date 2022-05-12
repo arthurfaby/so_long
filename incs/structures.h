@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 11:11:15 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/11 15:42:29 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 16:06:07 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_texture
 	void	*wall;
 	void	*no_texture;
 	void	*player;
+	void	*player2;
+	void	*player3;
 	void	*enemy;
 	void	*title;
 	void	*title_play;

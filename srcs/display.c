@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 14:35:06 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/11 15:51:51 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 17:21:07 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,19 @@ void	print_player(t_env *env)
 {
 	int	x;
 	int	y;
+	int	row;
+	int	col;
 
-	x = env->player->row + (env->height / 16 - env->map->n_rows) / 2;
-	y = env->player->col + (env->width / 16 - env->map->n_cols) / 2;
-	mlx_put_image_to_window(env->mlx, env->win, env->t->player, y * 16, x * 16);
+	row = env->player->row;
+	col = env->player->col;
+	x = (row + (env->height / 16 - env->map->n_rows) / 2) * 16;
+	y = (col + (env->width / 16 - env->map->n_cols) / 2) * 16;
+	if ((row + col) % 3 == 0)
+		mlx_put_image_to_window(env->mlx, env->win, env->t->player, y, x);
+	else if ((row + col) % 3 == 1)
+		mlx_put_image_to_window(env->mlx, env->win, env->t->player2, y, x);
+	else
+		mlx_put_image_to_window(env->mlx, env->win, env->t->player3, y, x);
 }
 
 void	print_moves(t_env *env)

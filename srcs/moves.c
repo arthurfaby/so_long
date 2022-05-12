@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:45:58 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/11 15:46:00 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 15:40:08 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ void	move_right(t_env *env)
 	int	x;
 	int	y;
 
+	env->player->moves++;
 	x = env->player->row;
 	y = env->player->col;
 	if (env->map->board[x][y + 1]->type == WALL)
 		return ;
 	env->player->col += 1;
+	move_enemies(env);
 	check_modif(env);
 	render(env);
 }
@@ -32,11 +34,13 @@ void	move_left(t_env *env)
 	int	x;
 	int	y;
 
+	env->player->moves++;
 	x = env->player->row;
 	y = env->player->col;
 	if (env->map->board[x][y - 1]->type == WALL)
 		return ;
 	env->player->col -= 1;
+	move_enemies(env);
 	check_modif(env);
 	render(env);
 }
@@ -46,11 +50,13 @@ void	move_top(t_env *env)
 	int	x;
 	int	y;
 
+	env->player->moves++;
 	x = env->player->row;
 	y = env->player->col;
 	if (env->map->board[x - 1][y]->type == WALL)
 		return ;
 	env->player->row -= 1;
+	move_enemies(env);
 	check_modif(env);
 	render(env);
 }
@@ -60,12 +66,14 @@ void	move_bottom(t_env *env)
 	int	x;
 	int	y;
 
+	env->player->moves++;
 	x = env->player->row;
 	y = env->player->col;
 	if (env->map->board[x + 1][y]->type == WALL)
 		return ;
 	env->player->row += 1;
 	check_modif(env);
+	move_enemies(env);
 	render(env);
 }
 

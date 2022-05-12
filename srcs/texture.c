@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 17:12:35 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/11 16:11:16 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 16:09:07 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ void	charge_texture_entity(t_env *env, t_texture *t)
 
 	t->player = mlx_xpm_file_to_image(env->mlx,
 			"assets/player.xpm", &trash, &trash);
+	t->player2 = mlx_xpm_file_to_image(env->mlx,
+			"assets/player2.xpm", &trash, &trash);
+	t->player3 = mlx_xpm_file_to_image(env->mlx,
+			"assets/player3.xpm", &trash, &trash);
 	t->enemy = mlx_xpm_file_to_image(env->mlx,
 			"assets/enemy.xpm", &trash, &trash);
 }

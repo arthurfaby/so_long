@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 11:26:59 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/11 15:35:42 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 14:41:43 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	key_hook(int keycode, t_env *env)
 	}
 	else if (!env->in_menu)
 	{
-		env->player->moves++;
 		if (keycode == 'w')
 			move_top(env);
 		else if (keycode == 's')
