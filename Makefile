@@ -6,7 +6,7 @@
 #    By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/24 15:12:12 by afaby             #+#    #+#              #
-#    Updated: 2022/05/12 11:22:33 by afaby            ###   ########.fr        #
+#    Updated: 2022/05/12 11:54:49 by afaby            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,8 @@ CFLAGS = -Wall -Wextra -Werror -I$(MLX) -L$(MLX) -lmlx -lXext -lX11 -lm -I$(INCS
 RM = rm -f
 
 all: $(NAME)
+
+bonus: all
 
 clean:
 	$(RM)
