@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 17:12:35 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/09 11:13:35 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/11 16:11:16 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,55 @@
 #include "mlx.h"
 #include "includes.h"
 
+void	charge_texture_menu(t_env *env, t_texture *t)
+{
+	int	trash;
+
+	t->title = mlx_xpm_file_to_image(env->mlx,
+			"assets/title.xpm", &trash, &trash);
+	t->title_play = mlx_xpm_file_to_image(env->mlx,
+			"assets/title_play.xpm", &trash, &trash);
+}
+
+void	charge_texture_entity(t_env *env, t_texture *t)
+{
+	int	trash;
+
+	t->player = mlx_xpm_file_to_image(env->mlx,
+			"assets/player.xpm", &trash, &trash);
+	t->enemy = mlx_xpm_file_to_image(env->mlx,
+			"assets/enemy.xpm", &trash, &trash);
+}
+
+void	charge_texture_struct(t_env *env, t_texture *t)
+{
+	int	trash;
+
+	t->ground = mlx_xpm_file_to_image(env->mlx,
+			"assets/ground.xpm", &trash, &trash);
+	t->wall = mlx_xpm_file_to_image(env->mlx,
+			"assets/wall.xpm", &trash, &trash);
+}
+
 void	charge_texture(t_env *env, t_texture *t)
 {
-	int	width;
-	int	height;
+	int	trash;
 
 	t->water = mlx_xpm_file_to_image(env->mlx,
-			"assets/water.xpm", &width, &height);
-	t->ground = mlx_xpm_file_to_image(env->mlx,
-			"assets/ground.xpm", &width, &height);
+			"assets/water.xpm", &trash, &trash);
 	t->spawn = mlx_xpm_file_to_image(env->mlx,
-			"assets/spawn.xpm", &width, &height);
+			"assets/spawn.xpm", &trash, &trash);
 	t->exit_on = mlx_xpm_file_to_image(env->mlx,
-			"assets/exit_on.xpm", &width, &height);
+			"assets/exit_on.xpm", &trash, &trash);
 	t->exit_off = mlx_xpm_file_to_image(env->mlx,
-			"assets/exit_off.xpm", &width, &height);
+			"assets/exit_off.xpm", &trash, &trash);
 	t->collectible = mlx_xpm_file_to_image(env->mlx,
-			"assets/collectible.xpm", &width, &height);
+			"assets/collectible.xpm", &trash, &trash);
 	t->collected = mlx_xpm_file_to_image(env->mlx,
-			"assets/collected.xpm", &width, &height);
+			"assets/collected.xpm", &trash, &trash);
 	t->no_texture = mlx_xpm_file_to_image(env->mlx,
-			"assets/no_texture.xpm", &width, &height);
-	t->wall = mlx_xpm_file_to_image(env->mlx,
-			"assets/wall.xpm", &width, &height);
-	t->player = mlx_xpm_file_to_image(env->mlx,
-			"assets/player.xpm", &width, &height);
-	t->enemy = mlx_xpm_file_to_image(env->mlx,
-			"assets/enemy.xpm", &width, &height);
-	t->title = mlx_xpm_file_to_image(env->mlx,
-			"assets/title.xpm", &width, &height);
-	t->title_play = mlx_xpm_file_to_image(env->mlx,
-			"assets/title_play.xpm", &width, &height);
+			"assets/no_texture.xpm", &trash, &trash);
+	charge_texture_struct(env, t);
+	charge_texture_entity(env, t);
+	charge_texture_menu(env, t);
 }

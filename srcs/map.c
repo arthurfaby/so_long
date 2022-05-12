@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:34:03 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/10 14:02:07 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 11:25:49 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	count_rows(char *path, t_map *map)
 	while (line)
 	{
 		free(line);
-		line = NULL;
 		line = get_next_line(fd, BUFFER_SIZE);
 		n_rows++;
 	}
@@ -87,12 +86,11 @@ int	count_collectable(char *path, t_map *map)
 	line = get_next_line(fd, BUFFER_SIZE);
 	while (line)
 	{
-		i = 0;
-		while (line[i])
+		i = -1;
+		while (line[++i])
 		{
 			if (line[i] == 'C')
 				count++;
-			i++;
 		}
 		free(line);
 		line = get_next_line(fd, BUFFER_SIZE);
@@ -122,8 +120,5 @@ t_map	*create_map(char *path)
 	map->to_collect = count_collectable(path, map);
 	close(fd);
 	check_wall(map);
-	if (map->n_cols == -1 || map->n_rows == -1 || map->to_collect == -1)
-		// PUT ERROR AND FREE MAP
-		return (0);
 	return (map);
 }

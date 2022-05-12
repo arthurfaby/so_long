@@ -6,7 +6,7 @@
 #    By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/24 15:12:12 by afaby             #+#    #+#              #
-#    Updated: 2022/05/10 14:47:35 by afaby            ###   ########.fr        #
+#    Updated: 2022/05/12 11:22:33 by afaby            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,13 @@ SRCS =	srcs/board.c \
 		srcs/image.c \
 		srcs/end.c \
 		srcs/error.c \
-		srcs/check_wall.c
+		srcs/check_wall.c \
+		srcs/render.c \
+		srcs/moves.c \
+		srcs/env.c \
+		srcs/print.c \
+		srcs/check_min.c \
+		srcs/check_rect.c
 
 CC = gcc
 

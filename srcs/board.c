@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 16:52:17 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/09 14:17:01 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/10 18:11:25 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 #include "functions.h"
 
-t_tile	***malloc_board(int	n_rows, int n_cols)
+t_tile	***malloc_board(int n_rows, int n_cols)
 {
 	t_tile	***board;
 	int		i;
@@ -37,7 +37,6 @@ int	create_board(t_map *map, char *path)
 	char	*line;
 	int		row;
 	int		col;
-	int		i;
 
 	row = 0;
 	fd = open(path, O_RDONLY);
@@ -47,12 +46,10 @@ int	create_board(t_map *map, char *path)
 	while (line)
 	{
 		col = 0;
-		i = 0;
-		while (line[i] && line[i] != '\n')
+		while (line[col] && line[col] != '\n')
 		{
-			map->board[row][col] = create_tile(line[i], row, col);
+			map->board[row][col] = create_tile(line[col], row, col);
 			col++;
-			i++;
 		}
 		map->board[row][col] = 0;
 		free(line);

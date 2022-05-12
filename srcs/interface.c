@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 18:06:42 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/09 11:58:45 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/11 15:50:46 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	display_health(t_env *env)
 	t_image	img;
 	double	width_health;
 
-	width_health = ((double)env->width / 3 - 3) * (double)env->player->health / 100;
+	width_health = (env->width / 3 - 3) * (double)env->player->health / 100;
 	x = 0;
 	img.img = mlx_new_image(env->mlx, env->width / 3, 30);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_len, &img.endian);
@@ -60,9 +60,9 @@ void	display_health(t_env *env)
 		while (y < env->width / 3)
 		{
 			if (x >= 3 && x <= 27 && y >= 3 && y <= (int)width_health)
-				img_pixel_put(env, &img, x, y, 0xFF0000);
+				img_pixel_put(&img, x, y, 0xFF0000);
 			else
-				img_pixel_put(env, &img, x, y, 0);
+				img_pixel_put(&img, x, y, 0);
 			y++;
 		}
 		x++;

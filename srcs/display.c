@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 14:35:06 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/09 11:48:30 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/11 15:51:51 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_water(t_env *env)
 		y = 0;
 		while (y < env->height)
 		{
-			mlx_put_image_to_window(env->mlx, env->win, env->texture->water, x, y);
+			mlx_put_image_to_window(env->mlx, env->win, env->t->water, x, y);
 			y += 16;
 		}
 		x += 16;
@@ -35,16 +35,18 @@ void	print_water(t_env *env)
 
 void	print_water_banner(t_env *env)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
+	void	*water;
 
+	water = env->t->water;
 	x = 0;
 	while (x < 2)
 	{
 		y = 0;
 		while (y < env->width)
 		{
-			mlx_put_image_to_window(env->mlx, env->win, env->texture->water, y, x * 16);
+			mlx_put_image_to_window(env->mlx, env->win, water, y, x * 16);
 			y += 16;
 		}
 		x++;
@@ -53,29 +55,29 @@ void	print_water_banner(t_env *env)
 
 void	print_tile(t_env *env, int x, int y)
 {
-	int	xof;
-	int	yof;
+	int	a;
+	int	b;
 
-	xof = (env->height / 16 - env->map->n_rows) / 2;
-	yof = (env->width / 16 - env->map->n_cols) / 2;
+	a = (x + (env->height / 16 - env->map->n_rows) / 2) * 16;
+	b = (y + (env->width / 16 - env->map->n_cols) / 2) * 16;
 	if (env->map->board[x][y]->type == GROUND)
-		mlx_put_image_to_window(env->mlx, env->win, env->texture->ground, (y + yof) * 16, (x + xof) * 16);
+		mlx_put_image_to_window(env->mlx, env->win, env->t->ground, b, a);
 	else if (env->map->board[x][y]->type == SPAWN)
-		mlx_put_image_to_window(env->mlx, env->win, env->texture->spawn, (y + yof) * 16, (x + xof) * 16);
+		mlx_put_image_to_window(env->mlx, env->win, env->t->spawn, b, a);
 	else if (env->map->board[x][y]->type == EXIT_ON)
-		mlx_put_image_to_window(env->mlx, env->win, env->texture->exit_on, (y + yof) * 16, (x + xof) * 16);
+		mlx_put_image_to_window(env->mlx, env->win, env->t->exit_on, b, a);
 	else if (env->map->board[x][y]->type == EXIT_OFF)
-		mlx_put_image_to_window(env->mlx, env->win, env->texture->exit_off, (y + yof) * 16, (x + xof) * 16);
+		mlx_put_image_to_window(env->mlx, env->win, env->t->exit_off, b, a);
 	else if (env->map->board[x][y]->type == COLLECTIBLE)
-		mlx_put_image_to_window(env->mlx, env->win, env->texture->collectible, (y + yof) * 16, (x + xof) * 16);
+		mlx_put_image_to_window(env->mlx, env->win, env->t->collectible, b, a);
 	else if (env->map->board[x][y]->type == COLLECTED)
-		mlx_put_image_to_window(env->mlx, env->win, env->texture->collected, (y + yof) * 16, (x + xof) * 16);
+		mlx_put_image_to_window(env->mlx, env->win, env->t->collected, b, a);
 	else if (env->map->board[x][y]->type == WALL)
-		mlx_put_image_to_window(env->mlx, env->win, env->texture->wall, (y + yof) * 16, (x + xof) * 16);
+		mlx_put_image_to_window(env->mlx, env->win, env->t->wall, b, a);
 	else if (env->map->board[x][y]->type == ENEMY)
-		mlx_put_image_to_window(env->mlx, env->win, env->texture->enemy, (y + yof) * 16, (x + xof) * 16);
+		mlx_put_image_to_window(env->mlx, env->win, env->t->enemy, b, a);
 	else
-		mlx_put_image_to_window(env->mlx, env->win, env->texture->no_texture, (y + yof) * 16, (x + xof) * 16);
+		mlx_put_image_to_window(env->mlx, env->win, env->t->no_texture, b, a);
 }
 
 void	print_player(t_env *env)
@@ -85,7 +87,7 @@ void	print_player(t_env *env)
 
 	x = env->player->row + (env->height / 16 - env->map->n_rows) / 2;
 	y = env->player->col + (env->width / 16 - env->map->n_cols) / 2;
-	mlx_put_image_to_window(env->mlx, env->win, env->texture->player, y * 16, x * 16);
+	mlx_put_image_to_window(env->mlx, env->win, env->t->player, y * 16, x * 16);
 }
 
 void	print_moves(t_env *env)
@@ -100,36 +102,4 @@ void	print_moves(t_env *env)
 	mlx_string_put(env->mlx, env->win, 10, 20, 0xFFFFFF, str);
 	free(str);
 	str = NULL;
-}
-
-int	render(t_env *env)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	if (env->in_menu)
-	{
-		display_menu(env);
-		return (0);
-	}
-	print_water_banner(env);
-	print_moves(env);
-	if (env->win)
-	{
-		while (env->map->board[x])
-		{
-			y = 0;
-			while (env->map->board[x][y])
-			{
-				print_tile(env, x, y);
-				y++;
-			}
-			x++;
-		}
-	}
-	print_player(env);
-	display_health(env);
-	display_progression(env);
-	return (0);
 }

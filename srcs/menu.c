@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:57:48 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/09 11:58:38 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/11 15:50:10 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ void	display_menu(t_env *env)
 		y = 0;
 		while (y < env->width)
 		{
-			img_pixel_put(env, &img, x, y, 0);
+			img_pixel_put(&img, x, y, 0);
 			y++;
 		}
 		x++;
 	}
+	x = (env->width - 384) / 2;
+	y = (env->width - 200) / 2;
 	mlx_put_image_to_window(env->mlx, env->win, img.img, 0, 0);
-	mlx_put_image_to_window(env->mlx, env->win, env->texture->title, (env->width - 384) / 2, 50);
-	mlx_put_image_to_window(env->mlx, env->win, env->texture->title_play, (env->width - 200) / 2, 200);
+	mlx_put_image_to_window(env->mlx, env->win, env->t->title, x, 50);
+	mlx_put_image_to_window(env->mlx, env->win, env->t->title_play, y, 200);
 	mlx_destroy_image(env->mlx, img.img);
 }

@@ -1,30 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.c                                            :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 10:03:28 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/11 15:06:13 by afaby            ###   ########.fr       */
+/*   Created: 2022/05/11 14:25:26 by afaby             #+#    #+#             */
+/*   Updated: 2022/05/11 15:26:22 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "structures.h"
+#include "functions.h"
 
-void	img_pixel_put(t_image *img, int y, int x, int color)
+int	render(t_env *env)
 {
-	char	*pixel;
-	int		i;
+	int	x;
+	int	y;
 
-	i = img->bpp - 8;
-	pixel = img->addr + (y * img->line_len) + x * (img->bpp / 8);
-	while (i >= 0)
+	x = 0;
+	if (env->in_menu)
 	{
-		if (img->endian)
-			*pixel++ = (color >> i) & 0xFF;
-		else
-			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
-		i -= 8;
-	}	
+		display_menu(env);
+		return (0);
+	}
+	print_water_banner(env);
+	print_moves(env);
+	if (env->win)
+	{
+		while (env->map->board[x])
+		{
+			y = 0;
+			while (env->map->board[x][y])
+				print_tile(env, x, y++);
+			x++;
+		}
+	}
+	print_player(env);
+	display_health(env);
+	display_progression(env);
+	return (0);
 }

@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   check_min.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 15:45:45 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/12 11:30:55 by afaby            ###   ########.fr       */
+/*   Created: 2022/05/12 11:13:47 by afaby             #+#    #+#             */
+/*   Updated: 2022/05/12 11:22:56 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "defines.h"
 #include "functions.h"
+#include "libft.h"
 #include "includes.h"
 
-int	check_legal_tile(char c)
+void	set_code(char c, int *code)
 {
-	return (c == '0' || c == '1' || c == 'P'
-		|| c == 'E' || c == 'C' || c == 'F' || c == '\n');
+	if (c == 'P')
+		*code |= 1;
+	if (c == 'E')
+		*code |= 2;
+	if (c == 'C')
+		*code |= 4;
 }
 
-void	check_content(char *path)
+void	check_min(char *path)
 {
+	int		code;
 	char	*line;
 	int		fd;
 	int		i;
-	int		ok;
 
-	ok = 1;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		end_game(NULL, FD_ERR);
+	code = 0;
 	line = get_next_line(fd, BUFFER_SIZE);
 	if (!line)
 		end_game(NULL, EMPTY_FILE_ERR);
@@ -39,20 +42,10 @@ void	check_content(char *path)
 	{
 		i = -1;
 		while (line[++i])
-		{
-			if (!check_legal_tile(line[i]))
-				ok = 0;
-		}
+			set_code(line[i], &code);
 		free(line);
 		line = get_next_line(fd, BUFFER_SIZE);
 	}
-	if (!ok)
-		end_game(NULL, UNKNOWN_TILE_ERR);
-}
-
-void	check_map(char *path)
-{
-	check_content(path);
-	check_rect(path);
-	check_min(path);
+	if (code != 7)
+		end_game(NULL, MIN_ERR);
 }

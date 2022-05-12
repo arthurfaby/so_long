@@ -6,14 +6,14 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 11:11:15 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/09 11:13:26 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/11 15:42:29 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
-#include "defines.h"
+# include "defines.h"
 
 typedef struct s_tile
 {
@@ -24,7 +24,7 @@ typedef struct s_tile
 	int	type;
 }	t_tile;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	t_tile	***board;
 	int		n_cols;
@@ -32,7 +32,7 @@ typedef struct	s_map
 	int		to_collect;
 }	t_map;
 
-typedef struct	s_player
+typedef struct s_player
 {
 	int	row;
 	int	col;
@@ -41,7 +41,7 @@ typedef struct	s_player
 	int	health;
 }	t_player;
 
-typedef struct	s_image
+typedef struct s_image
 {
 	int		bpp;
 	int		line_len;
@@ -50,7 +50,7 @@ typedef struct	s_image
 	void	*img;
 }	t_image;
 
-typedef struct	s_texture
+typedef struct s_texture
 {
 	void	*water;
 	void	*ground;
@@ -76,7 +76,7 @@ typedef struct s_env
 	int			in_menu;
 	int			selected;
 	t_map		*map;
-	t_texture	*texture;
+	t_texture	*t;
 	t_player	*player;
 }	t_env;
 

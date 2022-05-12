@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 11:07:23 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/10 11:41:43 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/11 15:43:52 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 #include "mlx.h"
 #include "functions.h"
 
-void	free_texture(t_env *env)
+void	free_t(t_env *env)
 {
-	mlx_destroy_image(env->mlx, env->texture->water);
-	mlx_destroy_image(env->mlx, env->texture->ground);
-	mlx_destroy_image(env->mlx, env->texture->spawn);
-	mlx_destroy_image(env->mlx, env->texture->exit_on);
-	mlx_destroy_image(env->mlx, env->texture->exit_off);
-	mlx_destroy_image(env->mlx, env->texture->collectible);
-	mlx_destroy_image(env->mlx, env->texture->collected);
-	mlx_destroy_image(env->mlx, env->texture->wall);
-	mlx_destroy_image(env->mlx, env->texture->no_texture);
-	mlx_destroy_image(env->mlx, env->texture->player);
-	mlx_destroy_image(env->mlx, env->texture->enemy);
-	mlx_destroy_image(env->mlx, env->texture->title);
-	mlx_destroy_image(env->mlx, env->texture->title_play);
+	mlx_destroy_image(env->mlx, env->t->water);
+	mlx_destroy_image(env->mlx, env->t->ground);
+	mlx_destroy_image(env->mlx, env->t->spawn);
+	mlx_destroy_image(env->mlx, env->t->exit_on);
+	mlx_destroy_image(env->mlx, env->t->exit_off);
+	mlx_destroy_image(env->mlx, env->t->collectible);
+	mlx_destroy_image(env->mlx, env->t->collected);
+	mlx_destroy_image(env->mlx, env->t->wall);
+	mlx_destroy_image(env->mlx, env->t->no_texture);
+	mlx_destroy_image(env->mlx, env->t->player);
+	mlx_destroy_image(env->mlx, env->t->enemy);
+	mlx_destroy_image(env->mlx, env->t->title);
+	mlx_destroy_image(env->mlx, env->t->title_play);
 }
 
 void	free_map(t_map *map)
@@ -74,7 +74,7 @@ void	end_game(t_env *env, int code)
 		else
 			ft_error(code);
 		mlx_loop_end(env->mlx);
-		free_texture(env);
+		free_t(env);
 		free_map(env->map);
 		mlx_destroy_window(env->mlx, env->win);
 		mlx_destroy_display(env->mlx);
