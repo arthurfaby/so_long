@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 17:26:16 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/12 10:58:34 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 11:39:31 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,5 @@
 # define WALL_ERR_MSG "\033[0;31m --> map must be surronded by walls.\n"
 # define MIN_ERR 136
 # define MIN_ERR_MSG "\033[0;31m --> at least 1 P, 1 E and 1 C in the map.\n"
+
 #endif
