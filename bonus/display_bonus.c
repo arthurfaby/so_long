@@ -6,14 +6,11 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 14:35:06 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/19 11:15:34 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 17:21:07 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "structures.h"
-#include "mlx.h"
-#include "libft.h"
-#include "functions.h"
+#include "so_long_bonus.h"
 
 void	print_water(t_env *env)
 {
@@ -74,6 +71,10 @@ void	print_tile(t_env *env, int x, int y)
 		mlx_put_image_to_window(env->mlx, env->win, env->t->collected, b, a);
 	else if (env->map->board[x][y]->type == WALL)
 		mlx_put_image_to_window(env->mlx, env->win, env->t->wall, b, a);
+	else if (env->map->board[x][y]->type == ENEMY)
+		mlx_put_image_to_window(env->mlx, env->win, env->t->enemy, b, a);
+	else
+		mlx_put_image_to_window(env->mlx, env->win, env->t->no_texture, b, a);
 }
 
 void	print_player(t_env *env)
@@ -87,10 +88,24 @@ void	print_player(t_env *env)
 	col = env->player->col;
 	x = (row + (env->height / 16 - env->map->n_rows) / 2) * 16;
 	y = (col + (env->width / 16 - env->map->n_cols) / 2) * 16;
-	mlx_put_image_to_window(env->mlx, env->win, env->t->player, y, x);
+	if ((row + col) % 3 == 0)
+		mlx_put_image_to_window(env->mlx, env->win, env->t->player, y, x);
+	else if ((row + col) % 3 == 1)
+		mlx_put_image_to_window(env->mlx, env->win, env->t->player2, y, x);
+	else
+		mlx_put_image_to_window(env->mlx, env->win, env->t->player3, y, x);
 }
 
 void	print_moves(t_env *env)
 {
-	ft_printf("Number of moves : %d\n", env->player->moves);
+	char	*str;
+	char	*str2;
+
+	str2 = ft_itoa(env->player->moves);
+	str = ft_strjoin("Number of moves : ", str2);
+	free(str2);
+	str2 = NULL;
+	mlx_string_put(env->mlx, env->win, 10, 20, 0xFFFFFF, str);
+	free(str);
+	str = NULL;
 }

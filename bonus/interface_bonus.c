@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "structures.h"
-#include "mlx.h"
-#include "libft.h"
-#include "functions.h"
+#include "so_long_bonus.h"
 
 void	display_progression(t_env *env)
 {

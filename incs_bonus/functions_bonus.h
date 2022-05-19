@@ -6,15 +6,15 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:06:05 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/19 11:16:51 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 17:35:15 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FUNCTIONS_H
-# define FUNCTIONS_H
+#ifndef FUNCTIONS_BONUS_H
+# define FUNCTIONS_BONUS_H
 
-# include "structures.h"
-# include "includes.h"
+# include "structures_bonus.h"
+# include "includes_bonus.h"
 
 // BOARD.C
 
@@ -62,6 +62,11 @@ int		ft_error(int n);
 // IMAGE.C
 
 void	img_pixel_put(t_image *img, int y, int x, int color);
+
+// INTERFACE.C
+
+void	display_progression(t_env *env);
+void	display_health(t_env *env);
 
 // KEY.C
 
@@ -115,6 +120,14 @@ void	init_env(t_env *env, char *path);
 
 void	check_min(char *path);
 void	set_code(char c, int *code);
+
+// MOVE_ENEMY.C
+
+void	move_enemies(t_env *env);
+void	move_enemy_left(t_env *env, int x, int y);
+void	move_enemy_right(t_env *env, int x, int y);
+void	move_enemy_bot(t_env *env, int x, int y);
+void	move_enemy_top(t_env *env, int x, int y);
 
 // CHECK_RECT.C
 

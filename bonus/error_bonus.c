@@ -6,14 +6,11 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:45:45 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/19 11:18:55 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 17:36:28 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "defines.h"
-#include "functions.h"
-#include "includes.h"
+#include "so_long_bonus.h"
 
 int	check_extension(char *str)
 {
@@ -31,7 +28,7 @@ int	check_extension(char *str)
 int	check_legal_tile(char c)
 {
 	return (c == '0' || c == '1' || c == 'P'
-		|| c == 'E' || c == 'C' || c == '\n');
+		|| c == 'E' || c == 'C' || c == 'F' || c == '\n');
 }
 
 void	check_content(char *path)

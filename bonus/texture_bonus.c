@@ -6,14 +6,11 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 17:12:35 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/19 11:13:19 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 16:09:07 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defines.h"
-#include "structures.h"
-#include "mlx.h"
-#include "includes.h"
+#include "so_long_bonus.h"
 
 void	charge_texture_menu(t_env *env, t_texture *t)
 {
@@ -31,6 +28,12 @@ void	charge_texture_entity(t_env *env, t_texture *t)
 
 	t->player = mlx_xpm_file_to_image(env->mlx,
 			"assets/player.xpm", &trash, &trash);
+	t->player2 = mlx_xpm_file_to_image(env->mlx,
+			"assets/player2.xpm", &trash, &trash);
+	t->player3 = mlx_xpm_file_to_image(env->mlx,
+			"assets/player3.xpm", &trash, &trash);
+	t->enemy = mlx_xpm_file_to_image(env->mlx,
+			"assets/enemy.xpm", &trash, &trash);
 }
 
 void	charge_texture_struct(t_env *env, t_texture *t)
@@ -59,6 +62,8 @@ void	charge_texture(t_env *env, t_texture *t)
 			"assets/collectible.xpm", &trash, &trash);
 	t->collected = mlx_xpm_file_to_image(env->mlx,
 			"assets/collected.xpm", &trash, &trash);
+	t->no_texture = mlx_xpm_file_to_image(env->mlx,
+			"assets/no_texture.xpm", &trash, &trash);
 	charge_texture_struct(env, t);
 	charge_texture_entity(env, t);
 	charge_texture_menu(env, t);

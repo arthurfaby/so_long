@@ -1,50 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   check_min.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 15:45:45 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/19 11:18:55 by afaby            ###   ########.fr       */
+/*   Created: 2022/05/12 11:13:47 by afaby             #+#    #+#             */
+/*   Updated: 2022/05/12 11:22:56 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "defines.h"
-#include "functions.h"
-#include "includes.h"
+#include "so_long_bonus.h"
 
-int	check_extension(char *str)
+void	set_code(char c, int *code)
 {
-	int	len;
-
-	len = ft_strlen(str);
-	return (
-		str[len - 1] == 'r'
-		&& str[len - 2] == 'e'
-		&& str[len - 3] == 'b'
-		&& str[len - 4] == '.'
-	);
+	if (c == 'P')
+		*code |= 1;
+	if (c == 'E')
+		*code |= 2;
+	if (c == 'C')
+		*code |= 4;
 }
 
-int	check_legal_tile(char c)
+void	check_min(char *path)
 {
-	return (c == '0' || c == '1' || c == 'P'
-		|| c == 'E' || c == 'C' || c == '\n');
-}
-
-void	check_content(char *path)
-{
+	int		code;
 	char	*line;
 	int		fd;
 	int		i;
-	int		ok;
 
-	ok = 1;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		end_game(NULL, FD_ERR);
+	code = 0;
 	line = get_next_line(fd, BUFFER_SIZE);
 	if (!line)
 		end_game(NULL, EMPTY_FILE_ERR);
@@ -52,20 +40,10 @@ void	check_content(char *path)
 	{
 		i = -1;
 		while (line[++i])
-		{
-			if (!check_legal_tile(line[i]))
-				ok = 0;
-		}
+			set_code(line[i], &code);
 		free(line);
 		line = get_next_line(fd, BUFFER_SIZE);
 	}
-	if (!ok)
-		end_game(NULL, UNKNOWN_TILE_ERR);
-}
-
-void	check_map(char *path)
-{
-	check_content(path);
-	check_rect(path);
-	check_min(path);
+	if (code != 7)
+		end_game(NULL, MIN_ERR);
 }

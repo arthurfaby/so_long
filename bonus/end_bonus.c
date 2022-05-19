@@ -6,14 +6,11 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 11:07:23 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/19 11:15:48 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 17:22:41 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "structures.h"
-#include "libft.h"
-#include "mlx.h"
-#include "functions.h"
+#include "so_long_bonus.h"
 
 void	free_t(t_env *env)
 {
@@ -25,7 +22,11 @@ void	free_t(t_env *env)
 	mlx_destroy_image(env->mlx, env->t->collectible);
 	mlx_destroy_image(env->mlx, env->t->collected);
 	mlx_destroy_image(env->mlx, env->t->wall);
+	mlx_destroy_image(env->mlx, env->t->no_texture);
 	mlx_destroy_image(env->mlx, env->t->player);
+	mlx_destroy_image(env->mlx, env->t->player2);
+	mlx_destroy_image(env->mlx, env->t->player3);
+	mlx_destroy_image(env->mlx, env->t->enemy);
 	mlx_destroy_image(env->mlx, env->t->title);
 	mlx_destroy_image(env->mlx, env->t->title_play);
 }

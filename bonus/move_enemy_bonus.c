@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes.h"
-#include "structures.h"
+#include "so_long_bonus.h"
 #include <time.h>
 
 void	move_enemy_top(t_env *env, int x, int y)

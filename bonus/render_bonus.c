@@ -6,12 +6,11 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 14:25:26 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/19 11:16:57 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 14:48:52 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "structures.h"
-#include "functions.h"
+#include "so_long_bonus.h"
 
 int	render(t_env *env)
 {
@@ -37,5 +36,7 @@ int	render(t_env *env)
 		}
 	}
 	print_player(env);
+	display_health(env);
+	display_progression(env);
 	return (0);
 }

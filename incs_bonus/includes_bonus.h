@@ -1,41 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 14:25:26 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/19 11:16:57 by afaby            ###   ########.fr       */
+/*   Created: 2022/04/29 16:47:00 by afaby             #+#    #+#             */
+/*   Updated: 2022/05/05 20:16:00 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "structures.h"
-#include "functions.h"
+#ifndef INCLUDES_BONUS_H
+# define INCLUDES_BONUS_H
 
-int	render(t_env *env)
-{
-	int	x;
-	int	y;
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <stddef.h>
 
-	x = 0;
-	if (env->in_menu)
-	{
-		display_menu(env);
-		return (0);
-	}
-	print_water_banner(env);
-	print_moves(env);
-	if (env->win)
-	{
-		while (env->map->board[x])
-		{
-			y = 0;
-			while (env->map->board[x][y])
-				print_tile(env, x, y++);
-			x++;
-		}
-	}
-	print_player(env);
-	return (0);
-}
+#endif

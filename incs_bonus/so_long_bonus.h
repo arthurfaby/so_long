@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 14:25:26 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/19 11:16:57 by afaby            ###   ########.fr       */
+/*   Created: 2022/05/19 10:26:30 by afaby             #+#    #+#             */
+/*   Updated: 2022/05/19 10:27:45 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "structures.h"
-#include "functions.h"
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
-int	render(t_env *env)
-{
-	int	x;
-	int	y;
+# include "defines_bonus.h"
+# include "functions_bonus.h"
+# include "includes_bonus.h"
+# include "structures_bonus.h"
+# include "mlx.h"
+# include "mlx_int.h"
+# include "libft.h"
 
-	x = 0;
-	if (env->in_menu)
-	{
-		display_menu(env);
-		return (0);
-	}
-	print_water_banner(env);
-	print_moves(env);
-	if (env->win)
-	{
-		while (env->map->board[x])
-		{
-			y = 0;
-			while (env->map->board[x][y])
-				print_tile(env, x, y++);
-			x++;
-		}
-	}
-	print_player(env);
-	return (0);
-}
+#endif

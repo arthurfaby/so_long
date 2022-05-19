@@ -6,13 +6,11 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 15:26:55 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/19 11:14:01 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/08 18:47:55 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "structures.h"
-#include "defines.h"
-#include "includes.h"
+#include "so_long_bonus.h"
 
 int	choose_type(char type)
 {
@@ -26,7 +24,9 @@ int	choose_type(char type)
 		return (WALL);
 	else if (type == 'E')
 		return (EXIT_OFF);
-	return (GROUND);
+	else if (type == 'F')
+		return (ENEMY);
+	return (NO_TEXTURE);
 }
 
 t_tile	*create_tile(char type, int row, int col)

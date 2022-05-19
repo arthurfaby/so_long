@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 10:43:05 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/09 10:25:43 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/19 11:14:10 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	init_player(t_env *env, t_player *player)
 	player->moves = 0;
 	player->col = 1;
 	player->row = 1;
-	player->health = 100;
 	player->collected = 0;
 	while (env->map->board[x])
 	{

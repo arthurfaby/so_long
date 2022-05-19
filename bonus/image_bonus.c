@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 14:25:26 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/19 11:16:57 by afaby            ###   ########.fr       */
+/*   Created: 2022/05/09 10:03:28 by afaby             #+#    #+#             */
+/*   Updated: 2022/05/11 15:06:13 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "structures.h"
-#include "functions.h"
+#include "so_long_bonus.h"
 
-int	render(t_env *env)
+void	img_pixel_put(t_image *img, int y, int x, int color)
 {
-	int	x;
-	int	y;
+	char	*pixel;
+	int		i;
 
-	x = 0;
-	if (env->in_menu)
+	i = img->bpp - 8;
+	pixel = img->addr + (y * img->line_len) + x * (img->bpp / 8);
+	while (i >= 0)
 	{
-		display_menu(env);
-		return (0);
-	}
-	print_water_banner(env);
-	print_moves(env);
-	if (env->win)
-	{
-		while (env->map->board[x])
-		{
-			y = 0;
-			while (env->map->board[x][y])
-				print_tile(env, x, y++);
-			x++;
-		}
-	}
-	print_player(env);
-	return (0);
+		if (img->endian)
+			*pixel++ = (color >> i) & 0xFF;
+		else
+			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
+		i -= 8;
+	}	
 }

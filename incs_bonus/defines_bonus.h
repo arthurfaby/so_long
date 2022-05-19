@@ -6,12 +6,12 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 17:26:16 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/19 11:13:26 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/12 11:39:31 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#ifndef DEFINES_BONUS_H
+# define DEFINES_BONUS_H
 
 # define BUFFER_SIZE 1
 
@@ -29,6 +29,8 @@
 # define EXIT_OFF 5
 # define COLLECTIBLE 6
 # define COLLECTED 7
+# define ENEMY 8
+# define NO_TEXTURE 15
 
 // ERRORS
 
