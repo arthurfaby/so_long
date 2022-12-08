@@ -6,7 +6,7 @@
 /*   By: afaby <afaby@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 17:10:16 by afaby             #+#    #+#             */
-/*   Updated: 2022/05/12 17:35:58 by afaby            ###   ########.fr       */
+/*   Updated: 2022/05/31 14:18:36 by afaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ int	main(int argc, char *argv[])
 	mlx_hook(env.win, DestroyNotify, StructureNotifyMask, &quit, &env);
 	mlx_hook(env.win, KeyPress, KeyPressMask, &key_hook, &env);
 	mlx_loop(env.mlx);
-	return (0);
+	return (1);
 }
